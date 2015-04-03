@@ -22,11 +22,43 @@ exports.show = function(req, res) {
 
 // Creates a new user in the DB.
 exports.create = function(req, res) {
+  console.log(req);
   User.create(req.body, function(err, user) {
     if(err) { return handleError(res, err); }
     return res.json(201, user);
   });
 };
+
+exports.login = function(req, res) {
+  console.log(req.body);
+  // User.findOne(name : req.body.name)
+
+   User.findOne({name:req.body.name, password:req.body.password}, function (err, user) {
+    if(err) { return handleError(res, err); }
+    if(!user) { 
+          return res.json(404, "username or password is wrong");
+    }
+    return res.json(user);
+  });
+
+
+  // User.create(req.body, function(err, user) {
+  //   if(err) { return handleError(res, err); }
+  //   return res.json(201, user);
+};
+
+// router.post('/login', controller.login);
+
+
+
+// exports.create = function(req, res) {
+//       req.body.comments = []
+//       req.body.upvotes = 0 
+//       Post.create(req.body, function(err, post) {
+//         if(err) { return handleError(res, err); }
+//         return res.json(201, post);
+//       });
+//     };
 
 // Updates an existing user in the DB.
 exports.update = function(req, res) {

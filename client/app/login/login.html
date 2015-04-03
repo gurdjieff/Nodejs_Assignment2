@@ -1,0 +1,28 @@
+<div style="margin-top: 100px;">
+    <form name="myForm" ng-submit="login()" class="container form-horizontal">
+        <div class="form-group" ng-class="{'has-error':myForm.username.$dirty && myForm.username.$invalid}">
+            <label class="col-sm-2 control-label">user name</label>
+            <div class="col-sm-10">
+                <input type="text" autocomplete="off" name="username" ng-pattern="/^[a-zA-Z]{1}/" ng-required="true" ng-model="data.username" class="form-control" placeholder="username">
+
+                <div ng-show="myForm.username.$dirty && myForm.username.$error.pattern" class="alert alert-danger help-block">
+                    username must begin with alphabet
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{'has-error':myForm.password.$dirty && myForm.password.$invalid}">
+            <label class="col-sm-2 control-label">password</label>
+            <div class="col-sm-10">
+                <input type="password" autocomplete="off" name="password" ng-required="true" ng-model="data.password" class="form-control" placeholder="password">
+            </div>
+        </div>
+
+     <div class="form-group">
+           <div class="col-sm-offset-2 col-sm-10">
+               <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">login</button>
+           </div>
+
+        </div>
+    </form>
+</div>

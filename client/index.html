@@ -21,7 +21,10 @@
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/login/login.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/register/register.css">
+      <link rel="stylesheet" href="app/users/users.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
@@ -31,8 +34,22 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-view=""></div>
-
+<!-- class="navbar navbar-inverse" -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/register" class="navbar-brand">Register</a></li>
+        <li><a class="navbar-brand" ng-show="!commonData.state" href="/login">Login in</a></li>
+        <li><a class="navbar-brand" ng-show="commonData.state" href="#/content">content</a></li>
+        <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.state"href="#/login">login out</a></li>
+        <li><a class="navbar-brand" href="#/other" id="other-pull">other</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</div>
+  </nav>
+      <div ng-view=""></div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -63,8 +80,16 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/login/Login.service.js"></script>
+          <script src="app/login/login.controller.js"></script>
+          <script src="app/login/login.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/register/Register.service.js"></script>
+          <script src="app/register/register.controller.js"></script>
+          <script src="app/register/register.js"></script>
+          <script src="app/users/users.controller.js"></script>
+          <script src="app/users/users.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
