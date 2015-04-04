@@ -20,6 +20,12 @@ var mongoose = require('mongoose'),
       link: { type: String, optional: true },
 	  email: { type: String, optional: true }
 	});
+    UserSchema.path('name').validate(function(n){
+        if (n.length > 10 || n.length < 5) {
+            return false;
+        }
+        return true;
+    }, 'name should be between 5 and 10 characters');
 
     // var CommentSchema = new Schema({
     //     body: { type: String, required: true },

@@ -3,7 +3,6 @@
 var _ = require('lodash');
 var crypto = require('crypto')
 var User = require('./user.model');
-
 // Get list of users
 exports.index = function(req, res) {
   User.find(function (err, users) {
@@ -35,7 +34,11 @@ exports.create = function(req, res) {
       req.body.password = password;
       // console.log(req.body);
       User.create(req.body, function(err, user) {
-          if(err) { return handleError(res, err); }
+          if(err) { 
+              console.log(err);
+
+            return handleError(res, err);
+             }
           return res.json(201, user);
   });
 

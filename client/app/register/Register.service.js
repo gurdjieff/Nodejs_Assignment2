@@ -12,8 +12,12 @@
              $location.path('/home');
 
           }).
-          error(function(data) {
-            alert(data);
+          error(function(error) {
+            if (error.errors) {
+                console.log(error.errors.name.message);
+            }
+            console.log(error);
+            // alert(data);
           });
         }
      }

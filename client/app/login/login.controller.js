@@ -1,5 +1,5 @@
 'use strict';
-
+// var flash = require('connect-flash')
 // angular.module('blogsApp')
 //   .controller('LoginCtrl', function ($scope) {
 //     $scope.message = 'Hello';
