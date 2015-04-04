@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var crypto = require('crypto')
 var User = require('./user.model');
 
 // Get list of users
@@ -22,18 +23,37 @@ exports.show = function(req, res) {
 
 // Creates a new user in the DB.
 exports.create = function(req, res) {
-  console.log(req);
-  User.create(req.body, function(err, user) {
+  console.log(req.body);
+  User.findOne({name:req.body.name}, function (err, user) {
     if(err) { return handleError(res, err); }
-    return res.json(201, user);
+    if(user) { 
+        console.log("user has beend exist");
+        return res.json(404, "username have been used!");
+    } else {
+      var md5 = crypto.createHash('md5');
+      var password = md5.update(req.body.password).digest('hex');
+      req.body.password = password;
+      // console.log(req.body);
+      User.create(req.body, function(err, user) {
+          if(err) { return handleError(res, err); }
+          return res.json(201, user);
   });
+
+  }
+    // return res.json(user);
+  });
+
+
+  
 };
 
 exports.login = function(req, res) {
   console.log(req.body);
   // User.findOne(name : req.body.name)
-
-   User.findOne({name:req.body.name, password:req.body.password}, function (err, user) {
+  var md5 = crypto.createHash('md5');
+  var password = md5.update(req.body.password).digest('hex');
+  req.body.password = password;
+  User.findOne({name:req.body.name, password:req.body.password}, function (err, user) {
     if(err) { return handleError(res, err); }
     if(!user) { 
           return res.json(404, "username or password is wrong");

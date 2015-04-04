@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <base href="/">
-    <title></title>
+    <title>blogs</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -39,11 +39,12 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+        <li><a class="navbar-brand" href="/" id="other-pull">Home</a></li>
+        <li><a class="navbar-brand" ng-show="!commonData.state" href="/login">Login</a></li>
         <li><a href="/register" class="navbar-brand">Register</a></li>
-        <li><a class="navbar-brand" ng-show="!commonData.state" href="/login">Login in</a></li>
+        <li><a href="/register" class="navbar-brand">Blogs</a></li>
         <li><a class="navbar-brand" ng-show="commonData.state" href="#/content">content</a></li>
         <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.state"href="#/login">login out</a></li>
-        <li><a class="navbar-brand" href="#/other" id="other-pull">other</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

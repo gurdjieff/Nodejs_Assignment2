@@ -11,6 +11,8 @@ angular.module('blogsApp')
            function($scope,Register,$routeParams,$location) {
 		
         $scope.register = function(){
+                    console.log("register");
+
         	$scope.user = {
             name:$scope.data.username,
             password:$scope.data.password,
