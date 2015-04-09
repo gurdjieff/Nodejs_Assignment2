@@ -1,11 +1,5 @@
 'use strict';
 
-// angular.module('blogsApp')
-//   .controller('RegisterCtrl', function ($scope) {
-//     $scope.message = 'Hello';
-//   });
-
-
 angular.module('blogsApp')
       .controller('RegisterCtrl', ['$scope','Register', '$routeParams','$location',
            function($scope,Register,$routeParams,$location) {

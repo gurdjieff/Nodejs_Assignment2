@@ -21,8 +21,10 @@
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/blogs/blogs.css">
       <link rel="stylesheet" href="app/login/login.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/postblogs/postblogs.css">
       <link rel="stylesheet" href="app/register/register.css">
       <link rel="stylesheet" href="app/users/users.css">
       <!-- endinjector -->
@@ -42,7 +44,10 @@
         <li><a class="navbar-brand" href="/" id="other-pull">Home</a></li>
         <li><a class="navbar-brand" ng-show="!commonData.state" href="/login">Login</a></li>
         <li><a href="/register" class="navbar-brand">Register</a></li>
-        <li><a href="/register" class="navbar-brand">Blogs</a></li>
+        <li><a href="/blogs" class="navbar-brand">Blogs</a></li>
+        <li><a href="/blogs" class="navbar-brand">myBlogs</a></li>
+        <li><a href="/postblogs" class="navbar-brand">postBlogs</a></li>
+
         <li><a class="navbar-brand" ng-show="commonData.state" href="#/content">content</a></li>
         <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.state"href="#/login">login out</a></li>
       </ul>
@@ -81,11 +86,17 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/Blog/Blog.service.js"></script>
+          <script src="app/Postblog/Postblog.service.js"></script>
+          <script src="app/blogs/blogs.controller.js"></script>
+          <script src="app/blogs/blogs.js"></script>
           <script src="app/login/Login.service.js"></script>
           <script src="app/login/login.controller.js"></script>
           <script src="app/login/login.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/postblogs/postblogs.controller.js"></script>
+          <script src="app/postblogs/postblogs.js"></script>
           <script src="app/register/Register.service.js"></script>
           <script src="app/register/register.controller.js"></script>
           <script src="app/register/register.js"></script>

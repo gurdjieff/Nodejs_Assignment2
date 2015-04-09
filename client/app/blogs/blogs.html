@@ -1,0 +1,30 @@
+
+<div class="container">
+	<h2>blogs<h2>
+</div>
+<div class="container">
+
+        <!-- {{data}} -->
+        <table class="table ng-table-responsive">       
+             <thead>
+              <thead>
+                <tr>
+                	<th>author</th>
+                    <th>title</th>
+                    <th>date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr ng-repeat="blog in blogs">
+                    <td>{{blog.name}}</td>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.date}}</td>
+                    <td>
+                        <button type="button" ng-click="remove(stockCode.code)" class="btn btn-danger">delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+        
