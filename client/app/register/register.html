@@ -1,3 +1,4 @@
+<div ng-show="commonData.error" class="alert alert-info">{{commonData.error}}</div>
 <div style="margin-top: 100px;">
     <form name="myForm" ng-submit="register()" class="container form-horizontal">
         <div class="form-group" ng-class="{'has-error':myForm.username.$dirty && myForm.username.$invalid}">
@@ -72,4 +73,5 @@
     <br>
         <br>
     <br>
+</div>
 </div>

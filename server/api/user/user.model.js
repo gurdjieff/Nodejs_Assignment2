@@ -21,7 +21,7 @@ var mongoose = require('mongoose'),
 	  email: { type: String, optional: true }
 	});
     UserSchema.path('name').validate(function(n){
-        if (n.length > 10 || n.length < 5) {
+        if (n.length > 10 || n.length < 3) {
             return false;
         }
         return true;

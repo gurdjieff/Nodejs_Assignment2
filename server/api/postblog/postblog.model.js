@@ -11,5 +11,12 @@ var mongoose = require('mongoose'),
       date: { type: String, required: true }
 
 	});
+	PostblogSchema.path('content').validate(function(n){
+        if (n.length > 2000 || n.length < 10) {
+            return false;
+        }
+        return true;
+    }, 'name should be between 10 and 2000 characters');
+
     
 module.exports = mongoose.model('postblogs', PostblogSchema);

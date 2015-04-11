@@ -1,5 +1,5 @@
 'use strict';
-
+var commonData = {}
 angular.module('blogsApp', [
   'ngCookies',
   'ngResource',

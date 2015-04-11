@@ -5,20 +5,16 @@
        var api = {
                     // $scope.posts = Register.register($scope);
              postblogs : function(scope) {
-                        console.log("register1");
               $http.post('/api/postblogs', scope.blog).success(function(blog) {
               console.log("postblog");
               scope.blog = {};
-
-             $location.path('/home');
-
+             $location.path('/blogs');
           }).
           error(function(error) {
             if (error.errors) {
-                // console.log(error.errors.name.message);
+               commonData.error = error.errors.content.message;
             }
             console.log(error);
-            // alert(data);
           });
         }
      }

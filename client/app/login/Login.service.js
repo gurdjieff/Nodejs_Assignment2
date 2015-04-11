@@ -21,12 +21,16 @@
 
        login : function(scope) {
           $http.post('/api/users/login', scope.user).success(function(user) {
-            scope.user = [];
             console.log(user);
-           $location.path('/register');
+            commonData.loginState = true;
+            commonData.username = scope.user.name;
+            scope.user = [];
+
+
+           $location.path('/blogs');
           }).
-          error(function(data) {
-            alert(data);
+          error(function(error) {
+            scope.commonData.error = error;
           });
         }
      }

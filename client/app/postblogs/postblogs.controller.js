@@ -4,16 +4,16 @@
 angular.module('blogsApp')
       .controller('PostblogsCtrl', ['$scope','Postblog', '$routeParams','$location',
            function($scope,Postblog,$routeParams,$location) {
-		
+		          commonData.error = null;
         $scope.postblogs = function(){
-            console.log("register");
+                    commonData.error = null;
+
+            console.log(commonData);
             var myDate = new Date();  
-			// myDate.toLocaleDateString();     
-// var mytime=myDate.toLocaleTimeString();      
-          // myDate.toLocaleString();        
-                  console.log(myDate.toLocaleString());
+		  
+          console.log(myDate.toLocaleString());
         	$scope.blog = {
-            name:$scope.data.title,
+            name:commonData.username,
             title:$scope.data.title,
             content:$scope.data.blog,
             date:myDate.toLocaleString()

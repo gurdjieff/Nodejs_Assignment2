@@ -3,9 +3,9 @@
 angular.module('blogsApp')
       .controller('RegisterCtrl', ['$scope','Register', '$routeParams','$location',
            function($scope,Register,$routeParams,$location) {
-		
+          commonData.error = null;
         $scope.register = function(){
-                    console.log("register");
+          commonData.error = null;
 
         	$scope.user = {
             name:$scope.data.username,

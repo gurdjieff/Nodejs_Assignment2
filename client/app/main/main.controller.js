@@ -1,13 +1,19 @@
 'use strict';
-
 angular.module('blogsApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', ['$scope','$http', '$location',function ($scope, $http, $location) {
     $scope.awesomeThings = [];
+    $scope.commonData = commonData;
+
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
     });
 
+    $scope.loginOut = function() {
+      commonData.loginState = false;
+      $location.path('/login');
+
+    };
     $scope.addThing = function() {
       if($scope.newThing === '') {
         return;
@@ -19,4 +25,4 @@ angular.module('blogsApp')
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);
     };
-  });
+  }]);

@@ -24,13 +24,15 @@
       <link rel="stylesheet" href="app/blogs/blogs.css">
       <link rel="stylesheet" href="app/login/login.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/myBlogs/myBlogs.css">
       <link rel="stylesheet" href="app/postblogs/postblogs.css">
       <link rel="stylesheet" href="app/register/register.css">
       <link rel="stylesheet" href="app/users/users.css">
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body ng-app="blogsApp">
+  <body ng-app="blogsApp" ng-controller="MainCtrl">
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -41,15 +43,13 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="navbar-brand" href="/" id="other-pull">Home</a></li>
-        <li><a class="navbar-brand" ng-show="!commonData.state" href="/login">Login</a></li>
-        <li><a href="/register" class="navbar-brand">Register</a></li>
-        <li><a href="/blogs" class="navbar-brand">Blogs</a></li>
-        <li><a href="/blogs" class="navbar-brand">myBlogs</a></li>
-        <li><a href="/postblogs" class="navbar-brand">postBlogs</a></li>
+        <li><a class="navbar-brand" ng-show="!commonData.loginState" href="/login">Login</a></li>
+        <li><a href="/register" ng-show="!commonData.loginState" class="navbar-brand">Register</a></li>
+        <li><a href="/postblogs" ng-show="commonData.loginState" class="navbar-brand">postBlogs</a></li>
+        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">myBlogs</a></li>
+        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">Blogs</a></li>
 
-        <li><a class="navbar-brand" ng-show="commonData.state" href="#/content">content</a></li>
-        <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.state"href="#/login">login out</a></li>
+        <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.loginState"href="#/login">login out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -95,6 +95,8 @@
           <script src="app/login/login.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.js"></script>
+          <script src="app/myBlogs/myBlogs.controller.js"></script>
+          <script src="app/myBlogs/myBlogs.js"></script>
           <script src="app/postblogs/postblogs.controller.js"></script>
           <script src="app/postblogs/postblogs.js"></script>
           <script src="app/register/Register.service.js"></script>

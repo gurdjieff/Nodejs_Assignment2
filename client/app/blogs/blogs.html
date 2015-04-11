@@ -2,9 +2,18 @@
 <div class="container">
 	<h2>blogs<h2>
 </div>
-<div class="container">
+<input type="search" class="form-control" ng-model="search" placeholder="search by title"></input>
+      </div>
 
-        <!-- {{data}} -->
+     
+    <p><strong>select:</strong> 
+      <select ng-model="selectBlogs">
+        <option value="allBlogs">all blogs</option>
+        <option value="myBlogs">my blogs</option>
+      </select>
+    </div> 
+
+<div class="container">
         <table class="table ng-table-responsive">       
              <thead>
               <thead>
@@ -14,16 +23,40 @@
                     <th>date</th>
                 </tr>
             </thead>
-            <tbody>
-
-                <tr ng-repeat="blog in blogs">
+            <tbody ng-switch="selectBlogs">
+                <tr ng-switch-when="allBlogs or default" ng-repeat="blog in blogs">
                     <td>{{blog.name}}</td>
                     <td>{{blog.title}}</td>
                     <td>{{blog.date}}</td>
                     <td>
-                        <button type="button" ng-click="remove(stockCode.code)" class="btn btn-danger">delete</button>
+                    <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blogs._id)" class="btn btn-danger">delete</button>
                     </td>
                 </tr>
+
+        <tr ng-switch-when="myBlogs" ng-repeat="blog in blogs | filter:{name:commonData.username}">
+                    <td>{{blog.name}}</td>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.date}}</td>
+                    <td>
+                <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog._id)" class="btn btn-danger">delete</button>
+
+                    </td>
+                </tr>
+
+
+
+
+                <tr ng-switch-default ng-repeat="blog in blogs">
+                    <td>{{blog.name}}</td>
+                    <td>{{blog.title}}</td>
+                    <td>{{blog.date}}</td>
+                    <td>
+                <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog)" class="btn btn-danger">delete</button>
+
+                    </td>
+                </tr>
+
+
             </tbody>
         </table>
 </div>
