@@ -35,23 +35,27 @@
         },
 
         postComment : function(scope) {
-                      console.log(scope.comment);
-
               $http.post('/api/comments', scope.comment).success(function(comment) {
               console.log(comment);
               scope.comments.push(scope.comment);
+              scope.commentInfo = "";
           }).
           error(function(error) {
             if (error.errors) {
-                commonData.error = error.errors.content.message;
+              commonData.error = error.errors.content.message;
+            } else if(error) {
+              commonData.error = error;
             }
             console.log(error);
           });
         },
 
+
         getComments : function(scope, blog_id) {
               $http.get('/api/comments/'+blog_id).success(function(comments) {
+              console.log("comment");
               console.log(comments);
+
               scope.comments = comments;
           }).
           error(function(error) {

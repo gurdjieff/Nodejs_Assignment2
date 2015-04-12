@@ -5,13 +5,17 @@ angular.module('blogsApp')
       .controller('BlogDetailsCtrl', ['$scope','BlogDetail', '$routeParams','$location',
            function($scope,BlogDetail,$routeParams,$location) {
      $scope.comments = [];
+     commonData.error = null;
 		 BlogDetail.getBlog($scope, $routeParams._id);
      BlogDetail.getComments($scope, $routeParams._id);
 
 		 $scope.postComment = function(){
+           commonData.error = null;
           var myDate = new Date();  
           var comment = {
               blog_id:$routeParams._id,
+              blog_title:$scope.blog.title,
+              blog_author:$scope.blog.name,
               name:commonData.username,
               content:$scope.commentInfo,
               date:myDate.toLocaleString()

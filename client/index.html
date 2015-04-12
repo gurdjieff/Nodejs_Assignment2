@@ -28,6 +28,7 @@
       <link rel="stylesheet" href="app/myBlogs/myBlogs.css">
       <link rel="stylesheet" href="app/postblogs/postblogs.css">
       <link rel="stylesheet" href="app/register/register.css">
+      <link rel="stylesheet" href="app/releventusers/releventusers.css">
       <link rel="stylesheet" href="app/users/users.css">
       <!-- endinjector -->
     <!-- endbuild -->
@@ -48,7 +49,7 @@
         <li><a href="/register" ng-show="!commonData.loginState" class="navbar-brand">register</a></li>
         <li><a href="/postblogs" ng-show="commonData.loginState" class="navbar-brand">post blog</a></li>
         <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">blogs</a></li>
-        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">relevant author</a></li>
+        <li><a href="/releventusers" ng-show="commonData.loginState" class="navbar-brand">relevant author</a></li>
         <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.loginState"href="#/login">login out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -105,6 +106,9 @@
           <script src="app/register/Register.service.js"></script>
           <script src="app/register/register.controller.js"></script>
           <script src="app/register/register.js"></script>
+          <script src="app/releventusers/Releventusers.service.js"></script>
+          <script src="app/releventusers/releventusers.controller.js"></script>
+          <script src="app/releventusers/releventusers.js"></script>
           <script src="app/users/users.controller.js"></script>
           <script src="app/users/users.js"></script>
           <script src="components/navbar/navbar.controller.js"></script>

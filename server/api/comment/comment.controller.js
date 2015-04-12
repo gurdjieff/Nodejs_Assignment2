@@ -20,6 +20,13 @@ exports.show = function(req, res) {
   });
 };
 
+exports.searchByBlogAuthor = function(req, res) {
+  Comment.find({blog_author:req.params.id}, function (err, comment) {
+    if(err) { return handleError(res, err); }
+    if(!comment) { return res.send(404); }
+    return res.json(comment);
+  });
+};
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
   Comment.create(req.body, function(err, comment) {

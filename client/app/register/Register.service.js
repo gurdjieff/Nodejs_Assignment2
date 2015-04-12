@@ -18,8 +18,8 @@
           }).
           error(function(error) {
             if (error.errors) {
-              commonData.error = error.errors.name.message;
-                console.log(error.errors.name.message);
+              commonData.error = error.errors.content.message;
+                console.log(error.errors.content.message);
             } else if (error) {
               commonData.error = error;
 

@@ -1,3 +1,4 @@
+<div ng-show="commonData.error" class="alert alert-info">{{commonData.error}}</div>
 <div class="container">
 	<h5>title: {{blog.title}}</h5>
 	<h5>author: {{blog.name}}</h5>
@@ -6,7 +7,7 @@
 	<h5>Feedbacks:</h5>
     <div ng-repeat="comment in comments">
 	<p><a href="/blogs/{{comment.name}}">author: {{comment.name}}</a></p>
-	<p>content{{comment.content}}  {{comment.date}}</p>
+	<p>content:  {{comment.content}}  {{comment.date}}</p>
 	<p>===========================================================================</p>
 	</div>
 	 <form name="myForm" ng-submit="postComment()" class="container form-horizontal">
@@ -22,4 +23,5 @@
         </div>
     </form>
  </div>
+</div>
             
