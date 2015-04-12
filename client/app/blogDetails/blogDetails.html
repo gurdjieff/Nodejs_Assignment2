@@ -1,0 +1,25 @@
+<div class="container">
+	<h5>title: {{blog.title}}</h5>
+	<h5>author: {{blog.name}}</h5>
+	<p>content: {{blog.content}}</p>
+</br></br>
+	<h5>Feedbacks:</h5>
+    <div ng-repeat="comment in comments">
+	<p><a href="/blogs/{{comment.name}}">author: {{comment.name}}</a></p>
+	<p>content{{comment.content}}  {{comment.date}}</p>
+	<p>===========================================================================</p>
+	</div>
+	 <form name="myForm" ng-submit="postComment()" class="container form-horizontal">
+        <div class="form-group">
+             <div class="col-sm-20">
+                <textarea placeholder="please input feedback.." class="form-control" rows="6" cols="30" ng-model="commentInfo"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+           <div class="col-sm-offset--0 col-sm-0">
+               <button class="btn btn-default">submit</button>
+           </div>
+        </div>
+    </form>
+ </div>
+            

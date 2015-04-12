@@ -1,18 +1,11 @@
-
 <div class="container">
 	<h2>blogs<h2>
-</div>
-<input type="search" class="form-control" ng-model="search" placeholder="search by title"></input>
-      </div>
-
-     
-    <p><strong>select:</strong> 
-      <select ng-model="selectBlogs">
-        <option value="allBlogs">all blogs</option>
-        <option value="myBlogs">my blogs</option>
-      </select>
-    </div> 
-
+ </div>
+            
+    <div class="col-sm-2">
+        <input class="col-sm-2" type="checkbox" ng-model="myBlogs"/> only show my blogs
+    </div>
+ </div> 
 <div class="container">
         <table class="table ng-table-responsive">       
              <thead>
@@ -21,42 +14,37 @@
                 	<th>author</th>
                     <th>title</th>
                     <th>date</th>
+                    <th>edit</th>
+                    <th>delete</th>
                 </tr>
             </thead>
-            <tbody ng-switch="selectBlogs">
-                <tr ng-switch-when="allBlogs or default" ng-repeat="blog in blogs">
+            <tbody>
+                <tr ng-show="!myBlogs" ng-repeat="blog in blogs">
+
                     <td>{{blog.name}}</td>
-                    <td>{{blog.title}}</td>
+
+                    <td><a href="/blogDetails/{{blog._id}}">{{blog.title}}</a></td>
                     <td>{{blog.date}}</td>
                     <td>
-                    <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blogs._id)" class="btn btn-danger">delete</button>
+                        <button type="button" ng-disabled="blog.name != commonData.username" ng-click="edit(blog._id)" class="btn btn-primary">edit</button>
+                    </td>
+                    <td>
+                        <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog._id)" class="btn btn-primary">delete</button>
                     </td>
                 </tr>
 
-        <tr ng-switch-when="myBlogs" ng-repeat="blog in blogs | filter:{name:commonData.username}">
+                <tr ng-show="myBlogs == true" ng-repeat="blog in blogs | filter:{name:commonData.username}">
                     <td>{{blog.name}}</td>
-                    <td>{{blog.title}}</td>
+                    <td><a href="/blogDetails/{{blog._id}}">{{blog.title}}</a></td>
                     <td>{{blog.date}}</td>
-                    <td>
-                <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog._id)" class="btn btn-danger">delete</button>
 
+                    <td>
+                        <button type="button" ng-disabled="blog.name != commonData.username" ng-click="edit(blog._id)" class="btn btn-primary">edit</button>
+                    </td>
+                    <td>
+                        <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog._id)" class="btn btn-primary">delete</button>
                     </td>
                 </tr>
-
-
-
-
-                <tr ng-switch-default ng-repeat="blog in blogs">
-                    <td>{{blog.name}}</td>
-                    <td>{{blog.title}}</td>
-                    <td>{{blog.date}}</td>
-                    <td>
-                <button type="button" ng-disabled="blog.name != commonData.username" ng-click="remove(blog)" class="btn btn-danger">delete</button>
-
-                    </td>
-                </tr>
-
-
             </tbody>
         </table>
 </div>

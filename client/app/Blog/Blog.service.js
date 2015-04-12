@@ -15,6 +15,18 @@
           });
         },
 
+        getBlogsByAuthor : function(scope, author) {
+              $http.get('/api/postblogs/getBlogsByAuthor/'+author).success(function(blogs) {
+              console.log(blogs);
+              scope.blogs = blogs;
+          }).
+          error(function(error) {
+            if (error.errors) {
+            }
+            console.log(error);
+          });
+        },
+
         removeABlogs : function(scope, blogId) {
               $http.delete('/api/postblogs/'+blogId).success(function(result) {
               console.log(result);

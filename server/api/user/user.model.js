@@ -25,7 +25,7 @@ var mongoose = require('mongoose'),
             return false;
         }
         return true;
-    }, 'name should be between 5 and 10 characters');
+    }, 'name should be between 3 and 10 characters');
 
     // var CommentSchema = new Schema({
     //     body: { type: String, required: true },

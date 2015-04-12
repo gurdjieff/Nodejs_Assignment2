@@ -6,5 +6,9 @@ angular.module('blogsApp')
       .when('/blogs', {
         templateUrl: 'app/blogs/blogs.html',
         controller: 'BlogsCtrl'
+      })
+      .when('/blogs/:author', {
+        templateUrl: 'app/blogs/blogs.html',
+        controller: 'BlogsCtrl'
       });
   });

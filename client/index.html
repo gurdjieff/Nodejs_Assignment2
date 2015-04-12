@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="app/app.css">
       <!-- injector:css -->
       <link rel="stylesheet" href="app/app.css">
+      <link rel="stylesheet" href="app/blogDetails/blogDetails.css">
       <link rel="stylesheet" href="app/blogs/blogs.css">
       <link rel="stylesheet" href="app/login/login.css">
       <link rel="stylesheet" href="app/main/main.css">
@@ -43,12 +44,11 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="navbar-brand" ng-show="!commonData.loginState" href="/login">Login</a></li>
-        <li><a href="/register" ng-show="!commonData.loginState" class="navbar-brand">Register</a></li>
-        <li><a href="/postblogs" ng-show="commonData.loginState" class="navbar-brand">postBlogs</a></li>
-        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">myBlogs</a></li>
-        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">Blogs</a></li>
-
+        <li><a class="navbar-brand" ng-show="!commonData.loginState" href="/login">login</a></li>
+        <li><a href="/register" ng-show="!commonData.loginState" class="navbar-brand">register</a></li>
+        <li><a href="/postblogs" ng-show="commonData.loginState" class="navbar-brand">post blog</a></li>
+        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">blogs</a></li>
+        <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">relevant author</a></li>
         <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.loginState"href="#/login">login out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -87,7 +87,10 @@
         <script src="app/app.js"></script>
           <!-- injector:js -->
           <script src="app/Blog/Blog.service.js"></script>
+          <script src="app/BlogDetail/BlogDetail.service.js"></script>
           <script src="app/Postblog/Postblog.service.js"></script>
+          <script src="app/blogDetails/blogDetails.controller.js"></script>
+          <script src="app/blogDetails/blogDetails.js"></script>
           <script src="app/blogs/blogs.controller.js"></script>
           <script src="app/blogs/blogs.js"></script>
           <script src="app/login/Login.service.js"></script>

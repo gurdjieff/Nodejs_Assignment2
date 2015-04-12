@@ -20,7 +20,7 @@ exports.show = function(req, res) {
   });
 };
 
-exports.getMyBlogs = function(req, res) {
+exports.getBlogsByAuthor = function(req, res) {
   Postblog.find({name:req.params.id}, function (err, postblog) {
     if(err) { return handleError(res, err); }
     if(!postblog) { return res.send(404); }
