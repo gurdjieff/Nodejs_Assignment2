@@ -1,3 +1,14 @@
-<div class="col-md-12">
-This is the releventusers view.
+<div class="container">
+	<h2>relevantAuthors</h2>
+
+	<div ng-repeat="author in relevantAuthors">
+	<h4>author: <a href="/blogs/{{author.username}}">{{author.username}}</a></h4>
+	<div ng-repeat="blog in author.commentBlogs">
+	<h5>blog:  <a href="/blogDetails/{{blog._id}}">{{blog.title}}</a></h5>
+	</div>
+</br>
+	<p>======================================================</p>
+	</div>
 </div>
+            
+

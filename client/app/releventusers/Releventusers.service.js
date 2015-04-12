@@ -5,9 +5,59 @@
        var api = {
 
         searchByBlogAuthor : function(scope, author) {
-              $http.get('/api/comments/searchByBlogAuthor/'+author).success(function(blogs) {
-              console.log(blogs);
-              scope.blogs = blogs;
+              $http.get('/api/comments/searchByBlogAuthor/'+author).success(function(comments) {
+              console.log(comments);
+
+            _id: "552a9e8cd59aa14c03a1cc6b"
+            blog_author: "qqq"
+            blog_id: "552a9e47d59aa14c03a1cc68"
+            blog_title: "this is a new blog"
+            content: "that is great"
+            date: "4/12/2015, 5:34:20 PM"
+            name: "qqq"
+
+
+              Array.prototype.contains = function(element) {  
+                  for (var i = 0; i < this.length; i++) {  
+                      if (this[i] == element) {  
+                          return true;  
+                      }  
+                  }  
+                  return false;  
+              }  
+              var authors = [];
+              angular.forEach(comments, function (comment, key) {
+                var flag = false;
+                angular.forEach(authors, function (item, key) {
+                  if (item.username == comment.name) {
+                    flag = true;
+                    var tempBlog = {
+                        title:comment.blog_title,
+                        _id:comment.blog_id
+                    };
+                    if (!item.commentBlogs.contains(tempBlog)) {
+                        item.commentBlogs.push(tempBlog);
+                    }
+                    console.log(key)
+                    return;
+                  } 
+                });
+
+                if (flag == false) {
+                  var tempBlog = {
+                        title:comment.blog_title,
+                        _id:comment.blog_id
+                    };
+                  var element = {
+                  username : comment.name,
+                  commentBlogs : [tempBlog]
+                };
+                  authors.push(element);
+                }
+                
+              });              
+              scope.relevantAuthors = authors;
+              console.log(authors);
           }).
           error(function(error) {
             if (error.errors) {

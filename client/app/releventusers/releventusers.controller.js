@@ -17,10 +17,3 @@ angular.module('blogsApp')
    //        };
    //      };
     }]);
-
-
-      // app.controller('contentInfoController', ['$scope', '$routeParams',
-      //      function($scope,$routeParams) {
-      //       $scope.info = $routeParams.diary;
-      //                  // console.log($scope.info);
-      //     }]);
