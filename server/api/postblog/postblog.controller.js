@@ -2,29 +2,62 @@
 
 var _ = require('lodash');
 var Postblog = require('./postblog.model');
+var User = require('../user/user.model');
+
+var http = require('http');
+var url  = require('url');
 
 // Get list of postblogs
 exports.index = function(req, res) {
-  Postblog.find(function (err, postblogs) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  console.log('query:'+query); 
+  var key = query.key;
+  var name = query.name;
+  var author = query.author;
+  var blogId = query._id;
+
+  console.log('name:'+name); 
+  console.log('name:'+name); 
+  console.log('name:'+name); 
+  console.log('blogId:'+blogId); 
+
+
+  User.findOne({name:name, key:key}, function (err, user) {
     if(err) { return handleError(res, err); }
-    return res.json(200, postblogs);
+    if(user) { 
+        console.log('name:'+name); 
+        if (author) {
+          Postblog.find({name:author}, function (err, postblog) {
+            if(err) { return handleError(res, err); }
+            if(!postblog) { return res.send(404); }
+            return res.json(postblog);
+          });
+        } else if (blogId) {
+          Postblog.findById(blogId, function (err, postblog) {
+            if(err) { return handleError(res, err); }
+            if(!postblog) { return res.send(404); }
+            return res.json(postblog);
+          });
+        } else {
+          Postblog.find(function (err, postblogs) {
+            if(err) { return handleError(res, err); }
+            return res.json(200, postblogs);
+          });
+        }
+    } else {
+        return res.json(404, "parameter is wrong!");
+    }
   });
 };
+
 
 // Get a single postblog
 exports.show = function(req, res) {
-  Postblog.findById(req.params.id, function (err, postblog) {
+  Comment.find({blog_id:req.params.id}, function (err, comment) {
     if(err) { return handleError(res, err); }
-    if(!postblog) { return res.send(404); }
-    return res.json(postblog);
-  });
-};
-
-exports.getBlogsByAuthor = function(req, res) {
-  Postblog.find({name:req.params.id}, function (err, postblog) {
-    if(err) { return handleError(res, err); }
-    if(!postblog) { return res.send(404); }
-    return res.json(postblog);
+    if(!comment) { return res.send(404); }
+    return res.json(comment);
   });
 };
 
@@ -52,13 +85,35 @@ exports.update = function(req, res) {
 
 // Deletes a postblog from the DB.
 exports.destroy = function(req, res) {
-  Postblog.findById(req.params.id, function (err, postblog) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  console.log('query:'+query); 
+  var key = query.key;
+  var name = query.name;
+  var blogId = query.blogId;
+  console.log('key:'+key); 
+  console.log('name:'+name); 
+  console.log('blogId:'+blogId); 
+
+  User.findOne({name:name, key:key}, function (err, user) {
     if(err) { return handleError(res, err); }
-    if(!postblog) { return res.send(404); }
-    postblog.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
-    });
+    if(user) { 
+        console.log('name:'+user); 
+        if (blogId) {
+          Postblog.findById(blogId, function (err, postblog) {
+            if(err) { return handleError(res, err); }
+            if(!postblog) { return res.send(404); }
+            postblog.remove(function(err) {
+            if(err) { return handleError(res, err); }
+            return res.send(204);
+        });
+      });
+        } else {
+           return res.json(404, "parameter is wrong!");
+        }
+    } else {
+        return res.json(404, "parameter is wrong!");
+    }
   });
 };
 

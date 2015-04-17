@@ -2,12 +2,41 @@
 
 var _ = require('lodash');
 var Comment = require('./comment.model');
+var http = require('http');
+var url  = require('url');
+var User = require('../user/user.model');
 
 // Get list of comments
 exports.index = function(req, res) {
-  Comment.find(function (err, comments) {
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  console.log('query:'+query); 
+  var key = query.key;
+  var name = query.name;
+  var blogId = query.blog_id;
+
+  console.log('name:'+name); 
+  console.log('name:'+name); 
+  console.log('name:'+name); 
+  console.log('blogId:'+blogId); 
+
+
+  User.findOne({name:name, key:key}, function (err, user) {
     if(err) { return handleError(res, err); }
-    return res.json(200, comments);
+    if(user) { 
+        console.log('gurdjieffname:'+name); 
+        if (blogId) {
+          Comment.find({blog_id:blogId}, function (err, comment) {
+            if(err) { return handleError(res, err); }
+            if(!comment) { return res.send(404); }
+            return res.json(comment);
+          });
+        } else {
+           return res.json(404, "parameter is wrong!");
+        }
+    } else {
+        return res.json(404, "parameter is wrong!");
+    }
   });
 };
 

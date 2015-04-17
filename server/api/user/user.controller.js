@@ -32,6 +32,9 @@ exports.create = function(req, res) {
       var md5 = crypto.createHash('md5');
       var password = md5.update(req.body.password).digest('hex');
       req.body.password = password;
+
+      var md5Key = crypto.createHash('md5');
+      req.body.key = md5Key.update(req.body.password+req.body.name).digest('hex');
       // console.log(req.body);
       User.create(req.body, function(err, user) {
           if(err) { 

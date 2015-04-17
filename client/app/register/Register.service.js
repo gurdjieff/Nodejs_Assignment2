@@ -6,13 +6,12 @@
                     // $scope.posts = Register.register($scope);
              register : function(scope) {
                         console.log("register1");
-              $http.post('/api/users', scope.user).success(function(posts) {
-              console.log("register2");
+              $http.post('/api/users', scope.user).success(function(user) {
+              console.log(user);
               commonData.loginState = true;
-              commonData.username = scope.user.name;
+              commonData.username = user.name;
+              commonData.key = user.key;
               scope.user = [];
-
-
              $location.path('/blogs');
 
           }).

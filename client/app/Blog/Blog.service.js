@@ -1,22 +1,31 @@
 'use strict';
 
  angular.module('blogsApp')
-      .factory('Blog', ['$http', '$location', function($http, $location){
+      .factory('Blog', ['$http', '$location','$alert', function($http, $location, $alert){
        var api = {
              getBlogs : function(scope) {
-              $http.get('/api/postblogs').success(function(blogs) {
+              var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
+              console.log('url:'+url);
+              $http.get(url).success(function(blogs) {
               console.log(blogs);
               scope.blogs = blogs;
           }).
           error(function(error) {
-            if (error.errors) {
-            }
+             $alert({
+              title:'Login Alert: ',
+              content: error,
+              placement:'top',
+              animation: 'amFadeAndSlideTop',
+              type: 'info',
+              duration: 3
+          });
             console.log(error);
           });
         },
 
         getBlogsByAuthor : function(scope, author) {
-              $http.get('/api/postblogs/getBlogsByAuthor/'+author).success(function(blogs) {
+          $http.get('/api/postblogs?key='+commonData.key+'&name='+commonData.username+'&author='+author)
+              .success(function(blogs) {
               console.log(blogs);
               scope.blogs = blogs;
           }).
@@ -28,7 +37,9 @@
         },
 
         removeABlogs : function(scope, blogId) {
-              $http.delete('/api/postblogs/'+blogId).success(function(result) {
+            var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
+
+              $http.delete(url+'&blogId='+blogId).success(function(result) {
               console.log(result);
 
             angular.forEach(scope.blogs, function (item, key) {
@@ -42,20 +53,6 @@
           }).
           error(function(error) {
             if (error.errors) {
-            }
-            console.log(error);
-          });
-        },
-
-        getMyBlogs : function(scope) {
-              $http.get('/api/postblogs/blog/'+'title').success(function(blogs) {
-              console.log(blogs);
-              scope.blogs = blogs;
-             // $location.path('/home');
-          }).
-          error(function(error) {
-            if (error.errors) {
-                // console.log(error.errors.name.message);
             }
             console.log(error);
           });

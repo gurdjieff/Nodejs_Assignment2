@@ -21,7 +21,10 @@
             <tbody>
                 <tr ng-show="!myBlogs" ng-repeat="blog in blogs">
 
-                    <td>{{blog.name}}</td>
+
+
+
+                    <td><a href="/blogs/{{blog.name}}">{{blog.name}}</a></td>
 
                     <td><a href="/blogDetails/{{blog._id}}">{{blog.title}}</a></td>
                     <td>{{blog.date}}</td>

@@ -4,6 +4,7 @@ angular.module('blogsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'mgcrea.ngStrap',
   'ngRoute'
 ])
   .config(function ($routeProvider, $locationProvider) {

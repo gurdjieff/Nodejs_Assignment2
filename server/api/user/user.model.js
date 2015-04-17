@@ -18,7 +18,9 @@ var mongoose = require('mongoose'),
 	  name: { type: String, required: true },
       password: { type: String, required: true },
       link: { type: String, optional: true },
-	  email: { type: String, optional: true }
+	  email: { type: String, optional: true },
+      key: { type: String, optional: true }
+
 	});
     UserSchema.path('name').validate(function(n){
         if (n.length > 10 || n.length < 3) {
