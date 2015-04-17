@@ -3,6 +3,8 @@
 var _ = require('lodash');
 var crypto = require('crypto')
 var User = require('./user.model');
+var validator = require('validator');
+
 // Get list of users
 exports.index = function(req, res) {
   User.find(function (err, users) {
@@ -23,6 +25,18 @@ exports.show = function(req, res) {
 // Creates a new user in the DB.
 exports.create = function(req, res) {
   console.log(req.body);
+  if (!validator.isLength(req.body.name, 3, 10)) {
+      return res.json(404, "name should be between 3 and 10 characters");
+  }
+
+  if (!validator.isLength(req.body.password, 5, 10)) {
+      return res.json(404, "password should be between 5 and 10 characters");
+  }
+
+  if (!validator.isEmail(req.body.email)) {
+      return res.json(404, "email is wrong");
+  }
+
   User.findOne({name:req.body.name}, function (err, user) {
     if(err) { return handleError(res, err); }
     if(user) { 
@@ -55,7 +69,14 @@ exports.create = function(req, res) {
 
 exports.login = function(req, res) {
   console.log(req.body);
-  // User.findOne(name : req.body.name)
+  if (!validator.isLength(req.body.name, 3, 10)) {
+      return res.json(404, "name should be between 3 and 10 characters");
+  }
+
+  if (!validator.isLength(req.body.password, 5, 10)) {
+      return res.json(404, "password should be between 5 and 10 characters");
+  }
+
   var md5 = crypto.createHash('md5');
   var password = md5.update(req.body.password).digest('hex');
   req.body.password = password;

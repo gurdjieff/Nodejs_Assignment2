@@ -5,6 +5,8 @@ var Comment = require('./comment.model');
 var http = require('http');
 var url  = require('url');
 var User = require('../user/user.model');
+var validator = require('validator');
+
 
 // Get list of comments
 exports.index = function(req, res) {
@@ -58,6 +60,9 @@ exports.searchByBlogAuthor = function(req, res) {
 };
 // Creates a new comment in the DB.
 exports.create = function(req, res) {
+   if (!validator.isLength(req.body.content, 10, 20000)) {
+      return res.json(404, "comment conent should be between 10 and 20000 characters");
+  }
   Comment.create(req.body, function(err, comment) {
     if(err) { return handleError(res, err); }
     return res.json(201, comment);

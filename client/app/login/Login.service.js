@@ -17,16 +17,15 @@
           error(function(error) {
 
             scope.commonData.error = error;
-             console.log("before alert11");
-// data-container="body" data-keyboard="true"
+            console.log("before alert11");
             $alert({
-            title:'Login Alert: ',
-            content: error,
-            placement:'top',
-            animation: 'amFadeAndSlideTop',
-            type: 'info',
-            duration: 3
-          });
+              title:'Login Alert: ',
+              content: error,
+              placement:'top',
+              animation: 'amFadeAndSlideTop',
+              type: 'info',
+              duration: 5
+            });
           });
         }
      }

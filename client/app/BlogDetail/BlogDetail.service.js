@@ -1,7 +1,7 @@
 'use strict';
 
  angular.module('blogsApp')
-      .factory('BlogDetail', ['$http', '$location', function($http, $location){
+      .factory('BlogDetail', ['$http', '$location', '$alert',function($http, $location,$alert){
        var api = {
              getBlog : function(scope, _id) {
               var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
@@ -45,9 +45,23 @@
           }).
           error(function(error) {
             if (error.errors) {
-              commonData.error = error.errors.content.message;
+              $alert({
+                title:'Comment Alert: ',
+                content: error.errors.content.message,
+                placement:'top',
+                animation: 'amFadeAndSlideTop',
+                type: 'info',
+                duration: 3
+              });
             } else if(error) {
-              commonData.error = error;
+              $alert({
+                title:'Comment Alert: ',
+                content: error,
+                placement:'top',
+                animation: 'amFadeAndSlideTop',
+                type: 'info',
+                duration: 3
+              }); 
             }
             console.log(error);
           });

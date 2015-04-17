@@ -1,7 +1,7 @@
 'use strict';
 
  angular.module('blogsApp')
-      .factory('Register', ['$http', '$location', function($http, $location){
+      .factory('Register', ['$http', '$location','$alert', function($http, $location,$alert){
        var api = {
                     // $scope.posts = Register.register($scope);
              register : function(scope) {
@@ -17,10 +17,24 @@
           }).
           error(function(error) {
             if (error.errors) {
-              commonData.error = error.errors.content.message;
                 console.log(error.errors.content.message);
+              $alert({
+                title:'Login Alert: ',
+                content: error,
+                placement:'top',
+                animation: 'amFadeAndSlideTop',
+                type: 'info',
+                duration: 5
+              });
             } else if (error) {
-              commonData.error = error;
+              $alert({
+                title:'Login Alert: ',
+                content: error,
+                placement:'top',
+                animation: 'amFadeAndSlideTop',
+                type: 'info',
+                duration: 5
+            });
 
             }
             console.log(error);

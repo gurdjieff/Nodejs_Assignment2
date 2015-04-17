@@ -6,6 +6,7 @@ var User = require('../user/user.model');
 
 var http = require('http');
 var url  = require('url');
+var validator = require('validator');
 
 // Get list of postblogs
 exports.index = function(req, res) {
@@ -63,6 +64,10 @@ exports.show = function(req, res) {
 
 // Creates a new postblog in the DB.
 exports.create = function(req, res) {
+  if (!validator.isLength(req.body.content, 10, 20000)) {
+      return res.json(404, "blog conent should be between 10 and 20000 characters");
+  }
+
   Postblog.create(req.body, function(err, postblog) {
     if(err) { return handleError(res, err); }
     return res.json(201, postblog);
