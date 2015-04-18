@@ -18,8 +18,8 @@
         },
 
         updateBlog : function(scope, _id, blog) {
-            var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
-              $http.put(url+'&_id='+_id, blog).success(function(blog) {
+            var url = '/api/postblogs/';
+              $http.put(url+_id, blog).success(function(blog) {
               console.log(blog);
              $location.path('/blogs');
           }).

@@ -46,6 +46,15 @@
                 </tr>
 
                 <tr ng-show="myBlogs == true" ng-repeat="blog in blogs | filter:{name:commonData.username}">
+                    <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
+  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            </button>
+            <div>
+            <span ng-repeat="like in blog.likes">
+                <a href="/blogs/{{like.name}}">{{like.name}}, </a>
+            </span>
+        </div>
+        </td>
                     <td>{{blog.name}}</td>
                     <td><a href="/blogDetails/{{blog._id}}">{{blog.title}}</a></td>
                     <td>{{blog.date}}</td>
