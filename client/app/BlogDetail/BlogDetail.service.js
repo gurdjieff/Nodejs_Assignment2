@@ -3,6 +3,44 @@
  angular.module('blogsApp')
       .factory('BlogDetail', ['$http', '$location', '$alert',function($http, $location,$alert){
        var api = {
+        likeComment : function(scope, commentId) {
+              var url = '/api/comments/like';
+              console.log('url:'+url);
+              var myDate = new Date();  
+              var body = {
+                name:commonData.username,
+                date:myDate.toLocaleString(),
+                id:commentId
+              }
+              $http.post(url, body)
+          .success(function(blogs) {
+             angular.forEach(scope.comments, function (item, key) {
+                if (item._id === commentId) {
+                  item.likes.push({
+                    name:commonData.username,
+                    date:myDate.toLocaleString(),
+                  });
+                   console.log(item)
+                  return;
+                }
+            });
+              console.log(blogs);
+          })
+          .error(function(error) {
+            $alert({
+              title:'Follow Alert: ',
+              content: error,
+              placement:'top',
+              animation: 'amFadeAndSlideTop',
+              type: 'info',
+              duration: 3
+            });
+            console.log(error);
+          });
+        },
+
+
+
              getBlog : function(scope, _id) {
               var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
 

@@ -8,7 +8,10 @@ angular.module('blogsApp')
      commonData.error = null;
 		 BlogDetail.getBlog($scope, $routeParams._id);
      BlogDetail.getComments($scope, $routeParams._id);
-
+    $scope.like = function(commentId){
+          console.log(commentId);
+           BlogDetail.likeComment($scope, commentId);
+     };
 		 $scope.postComment = function(){
            commonData.error = null;
           var myDate = new Date();  

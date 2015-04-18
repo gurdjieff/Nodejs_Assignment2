@@ -42,6 +42,33 @@ exports.index = function(req, res) {
   });
 };
 
+exports.like = function(req, res) {
+  
+  Comment.findById(req.body.id, function (err, comment) {
+    console.log(req.body);
+    if (err) { return handleError(res, err); }
+    if(!comment) { return res.send(404); }
+    
+    var like_index = _.findIndex(comment.likes , 
+       function(like) {
+        return like.name == req.body.name;
+    }); 
+    if (like_index != -1) {
+        return res.json(404, "you have been followed!");
+    };
+
+    var like = {
+      name: req.body.name,
+      date: req.body.date ,
+    }
+
+    comment.likes.push(like);
+    comment.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, comment);
+    });
+  });  
+};
 // Get a single comment
 exports.show = function(req, res) {
   Comment.find({blog_id:req.params.id}, function (err, comment) {

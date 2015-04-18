@@ -12,12 +12,23 @@
                 date:myDate.toLocaleString(),
                 id:blogsId
               }
-              $http.post(url, body).success(function(blogs) {
+              $http.post(url, body)
+          .success(function(blogs) {
+             angular.forEach(scope.blogs, function (item, key) {
+                if (item._id === blogsId) {
+                  item.likes.push({
+                    name:commonData.username,
+                    date:myDate.toLocaleString(),
+                  });
+                   console.log(item)
+                  return;
+                }
+            });
               console.log(blogs);
-          }).
-          error(function(error) {
+          })
+          .error(function(error) {
             $alert({
-              title:'Login Alert: ',
+              title:'Follow Alert: ',
               content: error,
               placement:'top',
               animation: 'amFadeAndSlideTop',

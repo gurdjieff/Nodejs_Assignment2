@@ -74,7 +74,7 @@ exports.like = function(req, res) {
         return like.name == req.body.name;
     }); 
     if (like_index != -1) {
-        return res.json(404, "you have been liked!");
+        return res.json(404, "you have been followed!");
     };
 
     var like = {

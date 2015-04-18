@@ -21,10 +21,11 @@
             </thead>
             <tbody>
                 <tr ng-show="!myBlogs" ng-repeat="blog in blogs">
-                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
-  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+                <td>
+                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
+  <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
             </button>
-            <div>
+            <div>Fans:
             <span ng-repeat="like in blog.likes">
                 <a href="/blogs/{{like.name}}">{{like.name}}, </a>
             </span>
@@ -49,7 +50,7 @@
                     <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
   <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
             </button>
-            <div>
+            <div>Fans:
             <span ng-repeat="like in blog.likes">
                 <a href="/blogs/{{like.name}}">{{like.name}}, </a>
             </span>
