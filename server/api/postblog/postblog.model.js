@@ -1,19 +1,16 @@
 'use strict';
 var mongoose = require('mongoose'),
         Schema = mongoose.Schema;
-  var CommentSchema = new Schema({
+  var LikeSchema = new Schema({
       name: { type: String, required: true },
-      content: { type: String, required: true },
       date: { type: String, required: true }
-
   });
 	var PostblogSchema = new Schema({
-	  name: { type: String, required: true },
+  	  name: { type: String, required: true },
       title: { type: String, required: true },
       content: { type: String, required: true },
       date: { type: String, required: true },
-      comment: [CommentSchema]
-
+      likes: [LikeSchema]
 	});
 	PostblogSchema.path('content').validate(function(n){
         if (n.length > 20000 || n.length < 10) {
@@ -22,5 +19,4 @@ var mongoose = require('mongoose'),
         return true;
     }, 'blog should be between 10 and 20000 characters');
 
-    
 module.exports = mongoose.model('postblogs', PostblogSchema);

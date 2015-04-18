@@ -11,6 +11,7 @@
              <thead>
               <thead>
                 <tr>
+                    <th>like</th>
                 	<th>author</th>
                     <th>title</th>
                     <th>date</th>
@@ -20,7 +21,15 @@
             </thead>
             <tbody>
                 <tr ng-show="!myBlogs" ng-repeat="blog in blogs">
-
+                <td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
+  <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+            </button>
+            <div>
+            <span ng-repeat="like in blog.likes">
+                <a href="/blogs/{{like.name}}">{{like.name}}, </a>
+            </span>
+        </div>
+        </td>
 
 
 

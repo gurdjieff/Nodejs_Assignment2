@@ -62,6 +62,33 @@ exports.show = function(req, res) {
   });
 };
 
+exports.like = function(req, res) {
+  
+  Postblog.findById(req.body.id, function (err, postblog) {
+    console.log(req.body);
+    if (err) { return handleError(res, err); }
+    if(!postblog) { return res.send(404); }
+    
+    var like_index = _.findIndex(postblog.likes , 
+       function(like) {
+        return like.name == req.body.name;
+    }); 
+    if (like_index != -1) {
+        return res.json(404, "you have been liked!");
+    };
+
+    var like = {
+      name: req.body.name,
+      date: req.body.date ,
+    }
+
+    postblog.likes.push(like);
+    postblog.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, postblog);
+    });
+  });  
+};
 // Creates a new postblog in the DB.
 exports.create = function(req, res) {
   if (!validator.isLength(req.body.content, 10, 20000)) {

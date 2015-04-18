@@ -3,7 +3,31 @@
  angular.module('blogsApp')
       .factory('Blog', ['$http', '$location','$alert', function($http, $location, $alert){
        var api = {
-             getBlogs : function(scope) {
+         likeBlog : function(scope, blogsId) {
+              var url = '/api/postblogs/like';
+              console.log('url:'+url);
+              var myDate = new Date();  
+              var body = {
+                name:commonData.username,
+                date:myDate.toLocaleString(),
+                id:blogsId
+              }
+              $http.post(url, body).success(function(blogs) {
+              console.log(blogs);
+          }).
+          error(function(error) {
+            $alert({
+              title:'Login Alert: ',
+              content: error,
+              placement:'top',
+              animation: 'amFadeAndSlideTop',
+              type: 'info',
+              duration: 3
+            });
+            console.log(error);
+          });
+        },
+          getBlogs : function(scope) {
               var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
               console.log('url:'+url);
               $http.get(url).success(function(blogs) {
