@@ -3,10 +3,12 @@
 var _ = require('lodash');
 var Postblog = require('./postblog.model');
 var User = require('../user/user.model');
+var Comment = require('../comment/comment.model');
 
 var http = require('http');
 var url  = require('url');
 var validator = require('validator');
+var hal = require('hal');
 
 // Get list of postblogs
 exports.index = function(req, res) {
@@ -38,7 +40,18 @@ exports.index = function(req, res) {
           Postblog.findById(blogId, function (err, postblog) {
             if(err) { return handleError(res, err); }
             if(!postblog) { return res.send(404); }
-            return res.json(postblog);
+
+            Comment.find({blog_id:blogId}, function (err, comment) {
+              if(err) { return handleError(res, err); }
+              if(!comment) { 
+                var resource = new hal.Resource({blog: postblog});
+                console.log(resource);
+                return res.json(resource);
+              }
+              var resource = new hal.Resource({blog: postblog, comments:comment});
+              console.log(resource.toJSON());
+              return res.json(resource.toJSON());
+            });
           });
         } else {
           Postblog.find(function (err, postblogs) {

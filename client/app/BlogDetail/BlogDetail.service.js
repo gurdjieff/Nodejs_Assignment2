@@ -39,14 +39,15 @@
           });
         },
 
-
-
              getBlog : function(scope, _id) {
               var url = '/api/postblogs?key='+commonData.key+'&name='+commonData.username;
 
-              $http.get(url+'&_id='+_id).success(function(blog) {
+              $http.get(url+'&_id='+_id)
+          .success(function(blog) {
               console.log(blog);
-              scope.blog = blog;
+              scope.blog = blog.blog;
+              scope.comments = blog.comments;
+
           }).
           error(function(error) {
             if (error.errors) {

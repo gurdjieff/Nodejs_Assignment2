@@ -18,8 +18,6 @@ exports.index = function(req, res) {
   var blogId = query.blog_id;
 
   console.log('name:'+name); 
-  console.log('name:'+name); 
-  console.log('name:'+name); 
   console.log('blogId:'+blogId); 
 
 
