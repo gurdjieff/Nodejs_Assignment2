@@ -22,7 +22,7 @@
               title:'Login Alert: ',
               content: error,
               placement:'top',
-              animation: 'amFadeAndSlideTop',
+              animation: 'am-fade-and-slide-top',
               type: 'info',
               duration: 5
             });

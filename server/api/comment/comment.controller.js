@@ -90,6 +90,7 @@ exports.create = function(req, res) {
   }
   Comment.create(req.body, function(err, comment) {
     if(err) { return handleError(res, err); }
+    console.log(comment);
     return res.json(201, comment);
   });
 };

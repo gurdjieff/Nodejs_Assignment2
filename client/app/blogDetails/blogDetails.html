@@ -1,27 +1,20 @@
 <div ng-show="commonData.error" class="alert alert-info">{{commonData.error}}</div>
 <div class="container">
-	<h5>title: {{blog.title}}</h5>
-	<h5>author: {{blog.name}}</h5>
-	<p>content: {{blog.content}}</p>
-      <div>
-          Fans:
-            <span ng-repeat="like in blog.likes">
-                <a href="/blogs/{{like.name}}">{{like.name}}, </a>
-            </span>
-        </div>
-
-
+  <h4>{{blog.title}}</h4>
+  <a href="/blogs/{{blog.name}}"><h5>{{blog.name}}</h5></a>
+	<p>{{blog.content}}</p>
+  <hr/>
 <div>
 	<h5>Feedbacks:</h5>
     <div ng-repeat="comment in comments">
         <div>
-            <p class="glyphicon glyphicon-hand-right" ng-click="like(comment._id)"><a href="/blogs/{{comment.name}}"> {{comment.name}} :</a>{{comment.content}} | {{comment.date}}</p>
-            </div>fans:
+            <p ><a href="/blogs/{{comment.name}}"> {{comment.name}} :</a>{{comment.content}} | {{comment.date}}</p>
+            </div>
+            <p class="glyphicon glyphicon-hand-right" ng-click="like(comment._id)">  fans</p>:
             <span ng-repeat="like in comment.likes">
                 <a href="/blogs/{{like.name}}">{{like.name}}, </a>
             </span>
-	
-	<p>--------------------------------------------------------------------</p>
+          <hr/>
 	</div>
 </div>
 	 <form name="myForm" ng-submit="postComment()" class="container form-horizontal">

@@ -5,13 +5,15 @@
        var api = {
         likeComment : function(scope, commentId) {
               var url = '/api/comments/like';
-              console.log('url:'+url);
+              // console.log('url:'+url);
               var myDate = new Date();  
               var body = {
                 name:commonData.username,
                 date:myDate.toLocaleString(),
                 id:commentId
               }
+                          console.log(body);
+
               $http.post(url, body)
           .success(function(blogs) {
              angular.forEach(scope.comments, function (item, key) {
@@ -77,9 +79,10 @@
         },
 
         postComment : function(scope) {
-              $http.post('/api/comments', scope.comment).success(function(comment) {
+              $http.post('/api/comments', scope.comment)
+          .success(function(comment) {
               console.log(comment);
-              scope.comments.push(scope.comment);
+              scope.comments.push(comment);
               scope.commentInfo = "";
           }).
           error(function(error) {

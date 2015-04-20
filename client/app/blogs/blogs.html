@@ -6,14 +6,12 @@
         <input class="col-sm-1" type="checkbox" ng-model="myBlogs"/> only show my blogs
     </div>
  </div> 
-     </br>
-
 <div class="container">
         <table class="table ng-table-responsive">       
              <thead>
               <thead>
                 <tr>
-                    <th>like</th>
+                    <th>fans</th>
                 	<th>author</th>
                     <th>title</th>
                     <th>date</th>
@@ -24,14 +22,10 @@
             <tbody>
                 <tr ng-show="!myBlogs" ng-repeat="blog in blogs">
                 <td>
-                    <button type="button" class="btn btn-default" aria-label="Left Align" ng-click="like(blog._id)">
-  <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
-            </button>
-            <div>Fans:
+  <span class="glyphicon glyphicon-hand-right" aria-hidden="true" ng-click="like(blog._id)"></span>
             <span ng-repeat="like in blog.likes">
                 <a href="/blogs/{{like.name}}">{{like.name}}, </a>
             </span>
-        </div>
         </td>
 
 
@@ -70,6 +64,9 @@
                     </td>
                 </tr>
             </tbody>
+
         </table>
+                      <hr/>
+
 </div>
         
