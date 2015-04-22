@@ -53,7 +53,9 @@
         <li><a href="/postblogs" ng-show="commonData.loginState" class="navbar-brand">post blog</a></li>
         <li><a href="/blogs" ng-show="commonData.loginState" class="navbar-brand">blogs</a></li>
         <li><a href="/releventusers" ng-show="commonData.loginState" class="navbar-brand">relevant author</a></li>
-        <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.loginState"href="#/login">login out</a></li>
+        <li><a href="/profile" ng-show="commonData.loginState" class="navbar-brand">profile</a></li>
+
+        <li><a class="navbar-brand" ng-click="loginOut()" ng-show="commonData.loginState" href="#/login">login out</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

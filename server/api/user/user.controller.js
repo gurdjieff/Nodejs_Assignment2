@@ -4,17 +4,29 @@ var _ = require('lodash');
 var crypto = require('crypto')
 var User = require('./user.model');
 var validator = require('validator');
+var url  = require('url');
 
 // Get list of users
 exports.index = function(req, res) {
-  User.find(function (err, users) {
+  console.log("index");
+  var url_parts = url.parse(req.url, true);
+  var query = url_parts.query;
+  console.log('query:'+query); 
+  var key = query.key;
+  var name = query.name;
+
+  console.log('name:'+name); 
+  console.log('key:'+key); 
+  User.findOne({name:name, key:key}, function (err, user) {
     if(err) { return handleError(res, err); }
-    return res.json(200, users);
+    return res.json(200, user);
   });
 };
 
 // Get a single user
 exports.show = function(req, res) {
+    console.log("show");
+
   User.findById(req.params.id, function (err, user) {
     if(err) { return handleError(res, err); }
     if(!user) { return res.send(404); }
@@ -36,6 +48,14 @@ exports.create = function(req, res) {
   if (!validator.isEmail(req.body.email)) {
       return res.json(404, "email is wrong");
   }
+
+  if (req.body.link) {
+      if (!validator.isURL(req.body.link)) {
+      return res.json(404, "link is wrong");
+    }
+  }
+  
+
 
   User.findOne({name:req.body.name}, function (err, user) {
     if(err) { return handleError(res, err); }
@@ -109,6 +129,11 @@ exports.login = function(req, res) {
 
 // Updates an existing user in the DB.
 exports.update = function(req, res) {
+  if (req.body.link) {
+      if (!validator.isURL(req.body.link)) {
+      return res.json(404, "link is wrong");
+    }
+  }
   if(req.body._id) { delete req.body._id; }
   User.findById(req.params.id, function (err, user) {
     if (err) { return handleError(res, err); }

@@ -150,6 +150,17 @@ exports.destroy = function(req, res) {
             if(!postblog) { return res.send(404); }
             postblog.remove(function(err) {
             if(err) { return handleError(res, err); }
+            Comment.find({blog_id:blogId}, function (err, comments) {
+                console.log(comments);
+                                console.log(comments.size);
+
+              for (var i = comments.length - 1; i >= 0; i--) {
+                var item = comments[i];
+                console.log(item);
+                item.remove(function(err) {
+                  });
+              };
+            });
             return res.send(204);
         });
       });
