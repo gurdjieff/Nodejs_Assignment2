@@ -108,24 +108,7 @@ exports.login = function(req, res) {
     return res.json(user);
   });
 
-
-  // User.create(req.body, function(err, user) {
-  //   if(err) { return handleError(res, err); }
-  //   return res.json(201, user);
 };
-
-// router.post('/login', controller.login);
-
-
-
-// exports.create = function(req, res) {
-//       req.body.comments = []
-//       req.body.upvotes = 0 
-//       Post.create(req.body, function(err, post) {
-//         if(err) { return handleError(res, err); }
-//         return res.json(201, post);
-//       });
-//     };
 
 // Updates an existing user in the DB.
 exports.update = function(req, res) {

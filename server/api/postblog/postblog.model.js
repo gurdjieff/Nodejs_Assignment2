@@ -19,4 +19,11 @@ var mongoose = require('mongoose'),
         return true;
     }, 'blog should be between 10 and 20000 characters');
 
+PostblogSchema.path('title').validate(function(n){
+        if (n.length > 100 || n.length < 2) {
+            return false;
+        }
+        return true;
+    }, 'blog should be between 2 and 100 characters');
+
 module.exports = mongoose.model('postblogs', PostblogSchema);

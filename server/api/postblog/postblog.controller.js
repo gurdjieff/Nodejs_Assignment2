@@ -23,7 +23,7 @@ exports.index = function(req, res) {
   console.log('name:'+name); 
   console.log('name:'+name); 
   console.log('name:'+name); 
-  console.log('blogId:'+blogId); 
+  // console.log('blogId:'+blogId); 
 
 
   User.findOne({name:name, key:key}, function (err, user) {
@@ -138,7 +138,6 @@ exports.destroy = function(req, res) {
   var blogId = query.blogId;
   console.log('key:'+key); 
   console.log('name:'+name); 
-  console.log('blogId:'+blogId); 
 
   User.findOne({name:name, key:key}, function (err, user) {
     if(err) { return handleError(res, err); }

@@ -22,5 +22,5 @@ CommentSchema.path('content').validate(function(n){
         return true;
     }, 'comment should be between 10 and 20000 characters');
 
-    
+
 module.exports = mongoose.model('comments', CommentSchema);
